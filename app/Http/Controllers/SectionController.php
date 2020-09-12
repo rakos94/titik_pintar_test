@@ -2,10 +2,19 @@
 
 namespace App\Http\Controllers;
 
+use App\Repositories\SectionRepository;
+use App\Services\SectionService;
 use Illuminate\Http\Request;
 
 class SectionController extends Controller
 {
+    protected $service;
+    
+    public function __construct(SectionRepository $sectionRepository)
+    {
+        // set the service
+        $this->service = new SectionService($sectionRepository);
+    }
     /**
      * Display a listing of the resource.
      *
@@ -13,7 +22,7 @@ class SectionController extends Controller
      */
     public function index()
     {
-        //
+        return $this->service->getAllSection();
     }
 
     /**
@@ -34,7 +43,7 @@ class SectionController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        return $this->service->createSection($request->all());
     }
 
     /**
@@ -45,7 +54,7 @@ class SectionController extends Controller
      */
     public function show($id)
     {
-        //
+        return $this->service->getOneSection($id);
     }
 
     /**
@@ -79,6 +88,6 @@ class SectionController extends Controller
      */
     public function destroy($id)
     {
-        //
+        return $this->service->getOneSection($id);
     }
 }
