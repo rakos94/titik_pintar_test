@@ -97,4 +97,9 @@ class TaskController extends Controller
     {
         return $this->service->updateTaskStateDone($id);
     }
+    
+    public function changeStateToTodo($id)
+    {
+        return $this->service->updateTaskStateTodo($id);
+    }
 }

@@ -23,3 +23,4 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 Route::resource('sections', SectionController::class);
 Route::resource('tasks', TaskController::class);
 Route::put('tasks/{id}/to-done', [TaskController::class, 'changeStateToDone']);
+Route::put('tasks/{id}/to-todo', [TaskController::class, 'changeStateToTodo']);

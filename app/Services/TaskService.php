@@ -42,6 +42,11 @@ class TaskService {
         $state = $this->stateRepository->getOneByName(State::DONE);
         return $this->taskRepository->updateTaskState($id, $state);
     }
+
+    public function updateTaskStateTodo($id){
+        $state = $this->stateRepository->getOneByName(State::TODO);
+        return $this->taskRepository->updateTaskState($id, $state);
+    }
     
     public function getFilterByState(array $request){
         return $this->taskRepository->getAllByState($request['state_id']);
