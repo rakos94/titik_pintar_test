@@ -16,8 +16,8 @@ class TaskRepository extends Repository
     
     public function createTask(array $data, State $baseState)
     {
-        if($data['state_id'] == null){
-            $data['state_id'] = $baseState;
+        if(!isset($data['state_id'])){
+            $data['state_id'] = $baseState->id;
         }
         $this->model = $this->model->create($data);
         return $this->model;
