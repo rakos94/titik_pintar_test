@@ -26,7 +26,8 @@ class TaskRepository extends Repository
     public function updateTaskState($id, State $state)
     {
         $this->model = $this->model->find($id);
-        $this->model->update(['state_id', $state->id]);
+        $this->model->state_id = $state->id;
+        $this->model->save();
         return $this->model;
     }
 

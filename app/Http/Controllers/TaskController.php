@@ -43,8 +43,9 @@ class TaskController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, $section_id)
     {
+        $request->merge(['section_id' => $section_id]);
         return $this->service->createTask($request->all());
     }
 
@@ -93,12 +94,12 @@ class TaskController extends Controller
         return $this->service->deleteOneTask($id);
     }
     
-    public function changeStateToDone($id)
+    public function changeStateToDone($section_id, $id)
     {
         return $this->service->updateTaskStateDone($id);
     }
     
-    public function changeStateToTodo($id)
+    public function changeStateToTodo($section_id, $id)
     {
         return $this->service->updateTaskStateTodo($id);
     }
