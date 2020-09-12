@@ -22,7 +22,9 @@ class SectionService {
     }
 
     public function getOneSection($id){
-        return $this->sectionRepository->show($id);
+        $this->sectionRepository->setModel($this->sectionRepository->show($id));
+        $this->sectionRepository->load('tasks');
+        return $this->sectionRepository->getModel();
     }
     
     public function updateSection(array $request, $id){
