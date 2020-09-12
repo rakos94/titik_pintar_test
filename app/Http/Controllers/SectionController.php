@@ -88,6 +88,6 @@ class SectionController extends Controller
      */
     public function destroy($id)
     {
-        return $this->service->getOneSection($id);
+        return $this->service->deleteOneSection($id);
     }
 }
