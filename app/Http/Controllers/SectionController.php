@@ -77,7 +77,7 @@ class SectionController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        return $this->service->updateSection($request->all(), $id);
     }
 
     /**

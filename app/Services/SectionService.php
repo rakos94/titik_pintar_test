@@ -24,6 +24,10 @@ class SectionService {
     public function getOneSection($id){
         return $this->sectionRepository->show($id);
     }
+    
+    public function updateSection(array $request, $id){
+        return $this->sectionRepository->update($request, $id);
+    }
 
     public function deleteOneSection($id){
         return $this->sectionRepository->delete($id);
