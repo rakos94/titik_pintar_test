@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\SectionController;
+use App\Http\Controllers\TaskController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -20,3 +21,5 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 Route::resource('sections', SectionController::class);
+Route::resource('tasks', TaskController::class);
+Route::put('tasks/{id}/to-done', [TaskController::class, 'changeStateToDone']);

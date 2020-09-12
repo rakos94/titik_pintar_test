@@ -2,10 +2,21 @@
 
 namespace App\Http\Controllers;
 
+use App\Repositories\StateRepository;
+use App\Repositories\TaskRepository;
+use App\Services\TaskService;
 use Illuminate\Http\Request;
 
 class TaskController extends Controller
 {
+    protected $service;
+    
+    public function __construct(TaskRepository $taskRepository, StateRepository $stateRepository)
+    {
+        // set the service
+        $this->service = new TaskService($taskRepository, $stateRepository);
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -13,7 +24,7 @@ class TaskController extends Controller
      */
     public function index()
     {
-        //
+        return $this->service->getAllTask();
     }
 
     /**
@@ -34,7 +45,7 @@ class TaskController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        return $this->service->createTask($request->all());
     }
 
     /**
@@ -45,7 +56,7 @@ class TaskController extends Controller
      */
     public function show($id)
     {
-        //
+        return $this->service->getOneTask($id);
     }
 
     /**
@@ -68,7 +79,7 @@ class TaskController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        return $this->service->updateTask($request->all(), $id);
     }
 
     /**
@@ -79,6 +90,11 @@ class TaskController extends Controller
      */
     public function destroy($id)
     {
-        //
+        return $this->service->deleteOneTask($id);
+    }
+    
+    public function changeStateToDone($id)
+    {
+        return $this->service->updateTaskStateDone($id);
     }
 }
